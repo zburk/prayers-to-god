@@ -20,14 +20,16 @@
 
       <div class="bg-grey-lighter flex content-end justify-between p-3">
         <form v-on:submit.prevent class="w-full">
-          <input type="text" v-model="textMessage" placeholder="iMessage" class="rounded-full w-full pt-1 pb-1 pl-2 pr-2" v-on:keyup.enter="addMessage()">
+          <textarea id="resize" v-model="textMessage" placeholder="iMessage" class="rounded-lg w-full pt-1 pb-1 pl-2 pr-2 resize-none" v-on:keyup.enter="addMessage()" style="height: 26px;"></textarea>
         </form>
       </div>
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script type="text/javascript">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://j11y.io/demos/plugins/jQuery/autoresize.jquery.js"></script>
+  <script>
     var app = new Vue({
       el: '#root',
       data: {
@@ -44,7 +46,9 @@
           this.textMessage = '';
         }
       }
-    })
+    });
+
+    $('#resize').autoResize();
   </script>
 </body>
 </html>
