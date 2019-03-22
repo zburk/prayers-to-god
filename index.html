@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Prayers to God</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+  <div id="root">
+    <div class="sm:w-full">
+      <div class="bg-grey-lighter pt-4 pl-3 pb-2 mb-2">
+        <span class="text-grey-darker">To:</span> God
+      </div>
+      <div v-for="message in messages">
+        <div class="flex flex-col items-end mb-3 mr-3 ml-3">
+          <p v-text="message.message" class="bg-blue pt-2 pb-2 pl-3 pr-3 rounded-lg text-white mb-1"></p>
+          <p v-text="message.date" class="text-xs text-grey-darker"></p>
+        </div>
+      </div>
+
+      <div class="bg-grey-lighter flex content-end justify-between p-3">
+        <form v-on:submit.prevent class="w-full">
+          <input type="text" v-model="textMessage" placeholder="iMessage" class="rounded-full w-full pt-1 pb-1 pl-2 pr-2" v-on:keyup.enter="addMessage()">
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+    var app = new Vue({
+      el: '#root',
+      data: {
+        textMessage: '',
+        messages: [
+          { date: '2/22/18', message: 'Nullam maximus nisl quis velit ullamcorper varius. Fusce euismod dapibus lorem sit amet iaculis. Curabitur et gravida ex. Ut nec justo scelerisque, sagittis massa et, semper lacus. Duis tempor maximus ornare. Mauris ut imperdiet ex, ut mollis nisl. Vestibulum vitae feugiat libero. Donec pulvinar mi lorem, quis imperdiet metus rutrum cursus.' },
+          { date: '2/28/18', message: 'Curabitur fermentum elit mi, sit amet pharetra libero vehicula sed. Nulla in eleifend turpis. Fusce eu iaculis mauris. Mauris ac leo tristique, vehicula enim vitae, ornare dolor.' },
+          { date: '3/12/18', message: 'Donec hendrerit semper massa sed pretium. Vestibulum vestibulum arcu nunc, eu aliquet mauris maximus nec. Phasellus faucibus faucibus ipsum, et imperdiet magna ornare sed. Morbi eleifend nisl vitae elit pretium ullamcorper. Sed ac commodo mi. Sed et ipsum et nibh aliquam commodo. Sed fringilla a nisl at finibus.' },
+        ]
+      },
+      methods: {
+        addMessage() {
+          this.messages.push({ date: '3/22/18', message: this.textMessage });
+          this.textMessage = '';
+        }
+      }
+    })
+  </script>
+</body>
+</html>
